@@ -47,17 +47,15 @@ jobs:
           name: java-app
       
       - name: Login to Azure
-        uses: azure/login@v2
+        uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_950B9820E5DA440EA565EB04CEA597B9 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_D7A21DB642E245339B143AE143B83CD5 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_6F46917B4AA741299F9F834FAB9747B6 }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'JAVAGitHub'
+          app-name: 'java-sp'
           slot-name: 'Production'
           package: '*.war'
           
